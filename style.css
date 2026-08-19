@@ -1,0 +1,769 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #172033;
+    padding-bottom: 85px;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ================= HEADER ================= */
+
+.app-header {
+    background: #2563eb;
+    color: white;
+    padding: 24px 20px 30px;
+    border-radius: 0 0 28px 28px;
+}
+
+.app-header h1 {
+    font-size: 28px;
+}
+
+.app-header p {
+    margin-top: 5px;
+    opacity: .85;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+/* ================= PAGE TRANSITION ================= */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: pageSlide .3s ease;
+}
+
+@keyframes pageSlide {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ================= HOME ================= */
+
+.page-title {
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.balance-grid {
+    display: grid;
+    gap: 13px;
+}
+
+.balance-card {
+    color: white;
+    padding: 23px;
+    border-radius: 21px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.balance-card span {
+    font-size: 13px;
+    opacity: .9;
+}
+
+.balance-card strong {
+    display: block;
+    font-size: 32px;
+    margin-top: 8px;
+}
+
+.balance-card small {
+    display: block;
+    margin-top: 5px;
+    opacity: .9;
+}
+
+.credit-card {
+    background: #16a34a;
+}
+
+.debt-card {
+    background: #dc2626;
+}
+
+
+/* ================= HOME ACTIONS ================= */
+
+.home-actions {
+    margin-top: 18px;
+    display: grid;
+    gap: 12px;
+}
+
+.home-action {
+    width: 100%;
+    border: none;
+    background: white;
+
+    padding: 17px;
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    text-align: left;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.06);
+
+    transition: transform .2s ease,
+                box-shadow .2s ease;
+}
+
+.home-action:active {
+    transform: scale(.97);
+}
+
+.home-action .action-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.home-action div:nth-child(2) {
+    flex: 1;
+}
+
+.home-action h3 {
+    font-size: 16px;
+}
+
+.home-action p {
+    color: #777;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.home-action > span {
+    font-size: 25px;
+    color: #aaa;
+}
+
+
+/* ================= SECTION HEADER ================= */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 17px;
+}
+
+.section-header h2 {
+    font-size: 22px;
+}
+
+.section-header p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.primary-btn {
+    border: none;
+
+    background: #2563eb;
+    color: white;
+
+    padding: 11px 15px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+}
+
+.primary-btn:active {
+    transform: scale(.95);
+}
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 14px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    margin-bottom: 14px;
+
+    background: white;
+}
+
+.search-box:focus {
+    border-color: #2563eb;
+}
+
+
+/* ================= FRIEND CARD ================= */
+
+.friend-card,
+.debt-card-item {
+    background: white;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    margin-bottom: 12px;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.06);
+
+    transition: transform .2s ease,
+                box-shadow .2s ease;
+}
+
+.friend-card {
+    cursor: pointer;
+}
+
+.friend-card:active {
+    transform: scale(.98);
+}
+
+.friend-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.friend-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.status {
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+.status.credit {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status.settled {
+    background: #eee;
+    color: #555;
+}
+
+.friend-info {
+    margin-top: 10px;
+
+    color: #667085;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.card-buttons {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 13px;
+}
+
+.card-buttons button {
+    flex: 1;
+
+    border: none;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+.give-btn {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.return-btn {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.delete-btn {
+    max-width: 48px;
+
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.give-btn:active,
+.return-btn:active,
+.delete-btn:active {
+    transform: scale(.95);
+}
+
+
+/* ================= FRIEND HISTORY ================= */
+
+.history-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 18px;
+}
+
+.back-btn {
+    border: none;
+
+    background: white;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    font-size: 20px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+.history-name {
+    flex: 1;
+}
+
+.history-name h2 {
+    font-size: 21px;
+}
+
+.history-name p {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+.share-btn {
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 11px 13px;
+
+    border-radius: 11px;
+
+    font-size: 16px;
+}
+
+.share-btn:active {
+    transform: scale(.94);
+}
+
+
+/* ================= REMAINING ================= */
+
+.remaining-card {
+    background: white;
+
+    padding: 21px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.06);
+}
+
+.remaining-card span {
+    color: #777;
+
+    font-size: 12px;
+}
+
+.remaining-card strong {
+    display: block;
+
+    font-size: 30px;
+
+    margin-top: 6px;
+}
+
+.remaining-card p {
+    margin-top: 5px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.history-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 13px;
+}
+
+.history-actions button {
+    flex: 1;
+
+    border: none;
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+}
+
+.history-heading {
+    margin: 25px 0 12px;
+}
+
+
+/* ================= TRANSACTIONS ================= */
+
+.transaction {
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 16px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+}
+
+.transaction-info {
+    min-width: 0;
+}
+
+.transaction-info b {
+    font-size: 15px;
+}
+
+.transaction-info small {
+    display: block;
+
+    color: #777;
+
+    margin-top: 4px;
+
+    word-break: break-word;
+}
+
+.transaction-amount {
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.green {
+    color: #16a34a;
+}
+
+.red {
+    color: #dc2626;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty {
+    text-align: center;
+
+    color: #888;
+
+    padding: 45px 15px;
+
+    line-height: 1.5;
+}
+
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 74px;
+
+    background: white;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    box-shadow: 0 -5px 20px rgba(0,0,0,.08);
+
+    z-index: 50;
+}
+
+.nav-item {
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 11px;
+
+    min-width: 65px;
+
+    transition: .2s;
+}
+
+.nav-item span {
+    display: block;
+
+    font-size: 22px;
+
+    margin-bottom: 3px;
+}
+
+.nav-item.active {
+    color: #2563eb;
+
+    font-weight: bold;
+}
+
+.nav-item:active {
+    transform: scale(.92);
+}
+
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.5);
+
+    display: none;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+
+    max-width: 600px;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 25px 25px 0 0;
+
+    animation: modalUp .25s ease;
+}
+
+@keyframes modalUp {
+
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+
+}
+
+.modal-box h2 {
+    margin-bottom: 18px;
+}
+
+.input {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    margin-bottom: 12px;
+
+    font-size: 15px;
+
+    background: white;
+}
+
+.input:focus {
+    border-color: #2563eb;
+}
+
+.modal-save,
+.modal-cancel {
+    width: 100%;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    font-size: 15px;
+}
+
+.modal-save {
+    background: #2563eb;
+
+    color: white;
+}
+
+.modal-cancel {
+    background: #eee;
+
+    margin-top: 8px;
+}
+
+
+/* ================= TOAST ================= */
+
+#toast {
+    position: fixed;
+
+    bottom: 90px;
+
+    left: 50%;
+
+    transform: translate(-50%,20px);
+
+    background: #172033;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    opacity: 0;
+
+    transition: .3s;
+
+    pointer-events: none;
+
+    z-index: 200;
+
+    white-space: nowrap;
+}
+
+#toast.show {
+    opacity: 1;
+
+    transform: translate(-50%,0);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 400px) {
+
+    .container {
+        padding: 16px;
+    }
+
+    .balance-card {
+        padding: 20px;
+    }
+
+    .balance-card strong {
+        font-size: 28px;
+    }
+
+    .friend-name {
+        font-size: 16px;
+    }
+
+    .bottom-nav {
+        height: 70px;
+    }
+
+    .nav-item {
+        min-width: 55px;
+    }
+
+}

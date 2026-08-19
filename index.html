@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udhaar</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="app-header">
+    <div>
+        <h1>💰 Udhaar</h1>
+        <p>Simple money manager</p>
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HOME -->
+    <section id="homePage" class="page active">
+
+        <div class="container">
+
+            <h2 class="page-title">Your Balance</h2>
+
+            <div class="balance-grid">
+
+                <div class="balance-card credit-card">
+                    <span>💚 TOTAL CREDIT</span>
+                    <strong id="totalCredit">₹0</strong>
+                    <small>Money you have to receive</small>
+                </div>
+
+                <div class="balance-card debt-card">
+                    <span>🔴 TOTAL DEBT</span>
+                    <strong id="totalDebt">₹0</strong>
+                    <small>Money you have to pay</small>
+                </div>
+
+            </div>
+
+
+            <div class="home-actions">
+
+                <button
+                    class="home-action"
+                    onclick="showPage('friendsPage')">
+
+                    <div class="action-icon">👥</div>
+
+                    <div>
+                        <h3>Friend Udhaar</h3>
+                        <p>Track money friends owe you</p>
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button
+                    class="home-action"
+                    onclick="showPage('debtsPage')">
+
+                    <div class="action-icon">💳</div>
+
+                    <div>
+                        <h3>My Debt</h3>
+                        <p>Track money you owe others</p>
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRIENDS -->
+    <section id="friendsPage" class="page">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Friend Udhaar</h2>
+                    <p>People who owe you</p>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="openFriendModal()">
+
+                    + Add
+
+                </button>
+
+            </div>
+
+
+            <input
+                id="friendSearch"
+                class="search-box"
+                placeholder="🔍 Search friend..."
+                oninput="renderFriends()"
+            >
+
+
+            <div id="friendsList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRIEND HISTORY -->
+    <section id="friendHistoryPage" class="page">
+
+        <div class="container">
+
+            <div class="history-header">
+
+                <button
+                    class="back-btn"
+                    onclick="showPage('friendsPage')">
+
+                    ←
+
+                </button>
+
+                <div class="history-name">
+
+                    <h2 id="historyName">Friend</h2>
+
+                    <p>Udhaar history</p>
+
+                </div>
+
+                <button
+                    class="share-btn"
+                    onclick="shareFriend()">
+
+                    📤
+
+                </button>
+
+            </div>
+
+
+            <div class="remaining-card">
+
+                <span>REMAINING</span>
+
+                <strong id="historyAmount">₹0</strong>
+
+                <p id="historyStatus">Settled</p>
+
+            </div>
+
+
+            <div class="history-actions">
+
+                <button
+                    class="give-btn"
+                    id="historyGive">
+
+                    + Give
+
+                </button>
+
+                <button
+                    class="return-btn"
+                    id="historyReturn">
+
+                    + Returned
+
+                </button>
+
+            </div>
+
+
+            <h3 class="history-heading">
+                📜 Transaction History
+            </h3>
+
+            <div id="friendHistoryList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MY DEBT -->
+    <section id="debtsPage" class="page">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>My Debt</h2>
+                    <p>Money you have to pay</p>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="openDebtModal()">
+
+                    + Add
+
+                </button>
+
+            </div>
+
+
+            <div id="debtsList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRANSACTIONS -->
+    <section id="transactionsPage" class="page">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Transactions</h2>
+                    <p>All your money activity</p>
+                </div>
+
+            </div>
+
+            <div id="transactionsList"></div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item active"
+        data-page="homePage"
+        onclick="showPage('homePage')">
+
+        <span>🏠</span>
+        Home
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="friendsPage"
+        onclick="showPage('friendsPage')">
+
+        <span>👥</span>
+        Friends
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="debtsPage"
+        onclick="showPage('debtsPage')">
+
+        <span>💳</span>
+        My Debt
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="transactionsPage"
+        onclick="showPage('transactionsPage')">
+
+        <span>📜</span>
+        History
+
+    </button>
+
+</nav>
+
+
+<!-- FRIEND MODAL -->
+
+<div id="friendModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>Add Friend</h2>
+
+        <input
+            id="friendName"
+            class="input"
+            placeholder="Friend name"
+        >
+
+        <button
+            class="modal-save"
+            onclick="addFriend()">
+
+            Add Friend
+
+        </button>
+
+        <button
+            class="modal-cancel"
+            onclick="closeModal('friendModal')">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MONEY MODAL -->
+
+<div id="moneyModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2 id="moneyTitle">Add Udhaar</h2>
+
+        <input
+            id="moneyAmount"
+            class="input"
+            type="number"
+            placeholder="Amount ₹"
+        >
+
+        <input
+            id="moneyNote"
+            class="input"
+            placeholder="Note (optional)"
+        >
+
+        <button
+            class="modal-save"
+            onclick="saveMoney()">
+
+            Save
+
+        </button>
+
+        <button
+            class="modal-cancel"
+            onclick="closeModal('moneyModal')">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- DEBT MODAL -->
+
+<div id="debtModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>Add My Debt</h2>
+
+        <input
+            id="debtName"
+            class="input"
+            placeholder="Person / shop name"
+        >
+
+        <input
+            id="debtAmount"
+            class="input"
+            type="number"
+            placeholder="Amount ₹"
+        >
+
+        <input
+            id="debtNote"
+            class="input"
+            placeholder="Note (optional)"
+        >
+
+        <button
+            class="modal-save"
+            onclick="addDebt()">
+
+            Add Debt
+
+        </button>
+
+        <button
+            class="modal-cancel"
+            onclick="closeModal('debtModal')">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div id="paymentModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2 id="paymentTitle">Pay Debt</h2>
+
+        <input
+            id="paymentAmount"
+            class="input"
+            type="number"
+            placeholder="Payment amount ₹"
+        >
+
+        <input
+            id="paymentNote"
+            class="input"
+            placeholder="Note (optional)"
+        >
+
+        <button
+            class="modal-save"
+            onclick="payDebt()">
+
+            Save Payment
+
+        </button>
+
+        <button
+            class="modal-cancel"
+            onclick="closeModal('paymentModal')">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
